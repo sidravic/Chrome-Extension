@@ -1,0 +1,13 @@
+{
+	"name": "Test Extension",
+	"version" : "1.0",
+	"description" : "Test Extension",
+	"browser_action" : {
+		"default_icon" : "icon.png",
+		"popup" : "popup.html"
+	},
+	"permissions": [
+		"http://localhost:3000/",
+		"tabs"
+	]
+}

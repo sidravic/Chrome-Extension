@@ -1,0 +1,41 @@
+<html>
+<head>
+
+<style>
+body{
+	background:#CCCCCC;
+	height:500px;
+	width:500px;
+}
+</style>
+
+
+<script src="jquery-1.4.4.min.js"></script>
+</head>
+<body>
+	<script type='text/javascript'>
+	$(document).ready(function(){
+		
+		function setup_response(responses){
+			var htm = "";
+
+			for(var i = 0; i < responses.length; i++){				
+				htm += "<p> <a href=http://localhost:3000/" + responses[i]["url"] + " target='_blank'>" + responses[i]["question"].toString() + "</a>";
+				htm += "<br/> " + responses[i]["user"].toString() + "</p>";
+			}
+			chrome.browserAction.setBadgeText({text: responses.length.toString()});
+			$('.q-preview').html(htm);
+		}
+
+		var	url = "http://localhost:3000/api_request.js";		
+		$.get(url,function(response){
+										var resp = eval('('+ response + ')');	
+										console.log(resp);
+										setup_response(resp);
+									 });	
+
+	})
+	</script>
+	<div class="q-preview"> Loading ... </div>
+</body>
+</html>
